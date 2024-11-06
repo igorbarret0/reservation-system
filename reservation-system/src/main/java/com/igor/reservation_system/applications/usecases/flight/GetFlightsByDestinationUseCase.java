@@ -1,4 +1,4 @@
-package com.igor.reservation_system.applications.usecases;
+package com.igor.reservation_system.applications.usecases.flight;
 
 import com.igor.reservation_system.core.entities.Flight;
 

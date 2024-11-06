@@ -1,7 +1,7 @@
-package com.igor.reservation_system.applications.usecases.impl;
+package com.igor.reservation_system.applications.usecases.flight.impl;
 
 import com.igor.reservation_system.applications.exceptions.FlightDoesNotExistException;
-import com.igor.reservation_system.applications.usecases.GetFlightByIdUseCase;
+import com.igor.reservation_system.applications.usecases.flight.GetFlightByIdUseCase;
 import com.igor.reservation_system.core.entities.Flight;
 import com.igor.reservation_system.core.gateways.FlightGateway;
 

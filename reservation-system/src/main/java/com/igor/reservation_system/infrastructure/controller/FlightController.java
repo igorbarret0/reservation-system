@@ -1,9 +1,9 @@
 package com.igor.reservation_system.infrastructure.controller;
 
-import com.igor.reservation_system.applications.usecases.GetAllFlightsUseCase;
-import com.igor.reservation_system.applications.usecases.GetFlightByIdUseCase;
-import com.igor.reservation_system.applications.usecases.GetFlightsByDestinationUseCase;
-import com.igor.reservation_system.applications.usecases.SaveFlightUseCase;
+import com.igor.reservation_system.applications.usecases.flight.GetAllFlightsUseCase;
+import com.igor.reservation_system.applications.usecases.flight.GetFlightByIdUseCase;
+import com.igor.reservation_system.applications.usecases.flight.GetFlightsByDestinationUseCase;
+import com.igor.reservation_system.applications.usecases.flight.SaveFlightUseCase;
 import com.igor.reservation_system.core.entities.Flight;
 import com.igor.reservation_system.infrastructure.dtos.FlightDto;
 import com.igor.reservation_system.infrastructure.mapper.FlightMapper;
