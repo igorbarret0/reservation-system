@@ -8,6 +8,8 @@ import com.igor.reservation_system.applications.usecases.flight.impl.GetAllFligh
 import com.igor.reservation_system.applications.usecases.flight.impl.GetFlightByIdUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.flight.impl.GetFlightsByDestinationUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.flight.impl.SaveFlightUseCaseImpl;
+import com.igor.reservation_system.applications.usecases.flightReservation.MakeFlightReservationUseCase;
+import com.igor.reservation_system.applications.usecases.flightReservation.impl.MakeFlightReservationUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.user.GetAllUsersUseCase;
 import com.igor.reservation_system.applications.usecases.user.GetUserByIdUseCase;
 import com.igor.reservation_system.applications.usecases.user.SaveUserUseCase;
@@ -15,6 +17,7 @@ import com.igor.reservation_system.applications.usecases.user.impl.GetAllUsersUs
 import com.igor.reservation_system.applications.usecases.user.impl.GetUserByIdUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.user.impl.SaveUserUseCaseImpl;
 import com.igor.reservation_system.core.gateways.FlightGateway;
+import com.igor.reservation_system.core.gateways.FlightReservationGateway;
 import com.igor.reservation_system.core.gateways.UserGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +26,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeansConfig {
 
     /* Flight Beans */
+
     @Bean
     public GetAllFlightsUseCase getAllFlightsUseCase(FlightGateway flightGateway) {
         return new GetAllFlightUseCaseImpl(flightGateway);
@@ -44,6 +48,7 @@ public class BeansConfig {
     }
 
     /* User Beans */
+
     @Bean
     public SaveUserUseCase saveUserUseCase(UserGateway userGateway) {
         return new SaveUserUseCaseImpl(userGateway);
@@ -59,5 +64,14 @@ public class BeansConfig {
         return new GetUserByIdUseCaseImpl(userGateway);
     }
 
+    /* Flight Reservation Beans */
+
+    @Bean
+    public MakeFlightReservationUseCase makeFlightReservationUseCase(FlightReservationGateway flightReservationGateway,
+                                                                     UserGateway userGateway,
+                                                                     FlightGateway flightGateway) {
+
+        return new MakeFlightReservationUseCaseImpl(flightReservationGateway, userGateway, flightGateway);
+    }
 
 }
