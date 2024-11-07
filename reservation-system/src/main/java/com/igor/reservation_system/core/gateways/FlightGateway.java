@@ -14,4 +14,6 @@ public interface FlightGateway {
 
     List<Flight> getFlightsByDestination(String destination);
 
+    void updateAvailableSeats(Long flightId, int seatsReserved);
+
 }

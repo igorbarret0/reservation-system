@@ -30,6 +30,9 @@ public class UserGatewayImpl implements UserGateway {
     public User getUserById(Long id) {
 
         var userFound = userRepository.findUserById(id);
+        if (userFound == null) {
+            return null;
+        }
         return userMapper.toUserFromUserEntity(userFound);
     }
 

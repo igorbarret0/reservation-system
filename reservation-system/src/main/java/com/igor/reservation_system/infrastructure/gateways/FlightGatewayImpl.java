@@ -40,6 +40,9 @@ public class FlightGatewayImpl implements FlightGateway {
     public Flight getFlightById(Long id) {
 
         FlightEntity flightEntity = flightRepository.findFlightById(id);
+        if (flightEntity == null) {
+            return null;
+        }
         return flightMapper.toFlightFromFlightEntity(flightEntity);
     }
 
@@ -49,6 +52,14 @@ public class FlightGatewayImpl implements FlightGateway {
         return flightRepository.findAllFlightsByDestination(destination)
                 .stream().map(flightEntity -> flightMapper.toFlightFromFlightEntity(flightEntity)
                 ).toList();
+    }
+
+    @Override
+    public void updateAvailableSeats(Long flightId, int seatsReserved) {
+
+        var flight = flightRepository.findFlightById(flightId);
+        flight.setAvailableSeats(flight.getAvailableSeats() - seatsReserved);
+        flightRepository.save(flight);
     }
 
 }
