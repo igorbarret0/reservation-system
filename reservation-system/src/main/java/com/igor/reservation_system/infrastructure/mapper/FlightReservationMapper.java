@@ -45,4 +45,16 @@ public class FlightReservationMapper {
         );
     }
 
+    public FlightReservation toFlightReservationFromFlightReservationEntity(FlightReservationEntity entity) {
+
+        return new FlightReservation(
+                null,
+                entity.getFlightId(),
+                entity.getUserId(),
+                entity.getReservationDate(),
+                entity.getSeatsReserved(),
+                entity.getReservationStatus()
+        );
+    }
+
 }

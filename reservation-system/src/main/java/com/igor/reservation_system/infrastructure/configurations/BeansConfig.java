@@ -10,6 +10,8 @@ import com.igor.reservation_system.applications.usecases.flight.impl.GetFlightsB
 import com.igor.reservation_system.applications.usecases.flight.impl.SaveFlightUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.flightReservation.MakeFlightReservationUseCase;
 import com.igor.reservation_system.applications.usecases.flightReservation.impl.MakeFlightReservationUseCaseImpl;
+import com.igor.reservation_system.applications.usecases.payment.MakePaymentUseCase;
+import com.igor.reservation_system.applications.usecases.payment.impl.MakePaymentUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.user.GetAllUsersUseCase;
 import com.igor.reservation_system.applications.usecases.user.GetUserByIdUseCase;
 import com.igor.reservation_system.applications.usecases.user.SaveUserUseCase;
@@ -18,6 +20,7 @@ import com.igor.reservation_system.applications.usecases.user.impl.GetUserByIdUs
 import com.igor.reservation_system.applications.usecases.user.impl.SaveUserUseCaseImpl;
 import com.igor.reservation_system.core.gateways.FlightGateway;
 import com.igor.reservation_system.core.gateways.FlightReservationGateway;
+import com.igor.reservation_system.core.gateways.PaymentGateway;
 import com.igor.reservation_system.core.gateways.UserGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -72,6 +75,16 @@ public class BeansConfig {
                                                                      FlightGateway flightGateway) {
 
         return new MakeFlightReservationUseCaseImpl(flightReservationGateway, userGateway, flightGateway);
+    }
+
+    /* Payment Beans */
+
+    @Bean
+    public MakePaymentUseCase makePaymentUseCase(FlightReservationGateway flightReservationGateway,
+                                                 FlightGateway flightGateway,
+                                                 UserGateway userGateway, PaymentGateway paymentGateway) {
+
+        return new MakePaymentUseCaseImpl(flightReservationGateway, flightGateway, userGateway, paymentGateway);
     }
 
 }
