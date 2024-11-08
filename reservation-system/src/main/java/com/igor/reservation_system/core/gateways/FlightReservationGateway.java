@@ -6,4 +6,6 @@ public interface FlightReservationGateway {
 
     void makeFlightReservation(FlightReservation flightReservation);
 
+    FlightReservation getFlightById(Long flightReservationId);
+
 }

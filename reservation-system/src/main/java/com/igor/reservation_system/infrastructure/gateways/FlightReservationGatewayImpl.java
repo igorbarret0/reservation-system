@@ -13,13 +13,11 @@ public class FlightReservationGatewayImpl implements FlightReservationGateway {
 
     private FlightReservationRepository flightReservationRepository;
     private FlightReservationMapper mapper;
-    private UserRepository userRepository;
 
     public FlightReservationGatewayImpl(FlightReservationRepository reservationRepository, FlightReservationMapper mapper,
                                         UserRepository userRepository) {
         this.flightReservationRepository = reservationRepository;
         this.mapper = mapper;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -27,6 +25,14 @@ public class FlightReservationGatewayImpl implements FlightReservationGateway {
     public void makeFlightReservation(FlightReservation flightReservation) {
 
        flightReservationRepository.save(mapper.toFlightReservationEntityFromFlightReservationEntity(flightReservation));
+
+    }
+
+    @Override
+    public FlightReservation getFlightById(Long flightReservationId) {
+
+        var flightReservationFound = flightReservationRepository.findById(flightReservationId);
+        return flightReservationFound.map(entity -> mapper.toFlightReservationFromFlightReservationEntity(entity)).orElse(null);
 
     }
 }
