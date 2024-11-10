@@ -10,6 +10,14 @@ import com.igor.reservation_system.applications.usecases.flight.impl.GetFlightsB
 import com.igor.reservation_system.applications.usecases.flight.impl.SaveFlightUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.flightReservation.MakeFlightReservationUseCase;
 import com.igor.reservation_system.applications.usecases.flightReservation.impl.MakeFlightReservationUseCaseImpl;
+import com.igor.reservation_system.applications.usecases.hotel.GetAllHotelsUseCase;
+import com.igor.reservation_system.applications.usecases.hotel.GetHotelByIdUseCase;
+import com.igor.reservation_system.applications.usecases.hotel.GetHotelsByLocationUseCase;
+import com.igor.reservation_system.applications.usecases.hotel.SaveHotelUseCase;
+import com.igor.reservation_system.applications.usecases.hotel.impl.GetAllHotelsUseCaseImpl;
+import com.igor.reservation_system.applications.usecases.hotel.impl.GetHotelByIdUseCaseImpl;
+import com.igor.reservation_system.applications.usecases.hotel.impl.GetHotelsByLocationUseCaseImpl;
+import com.igor.reservation_system.applications.usecases.hotel.impl.SaveHotelUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.payment.MakePaymentUseCase;
 import com.igor.reservation_system.applications.usecases.payment.impl.MakePaymentUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.user.GetAllUsersUseCase;
@@ -18,10 +26,7 @@ import com.igor.reservation_system.applications.usecases.user.SaveUserUseCase;
 import com.igor.reservation_system.applications.usecases.user.impl.GetAllUsersUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.user.impl.GetUserByIdUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.user.impl.SaveUserUseCaseImpl;
-import com.igor.reservation_system.core.gateways.FlightGateway;
-import com.igor.reservation_system.core.gateways.FlightReservationGateway;
-import com.igor.reservation_system.core.gateways.PaymentGateway;
-import com.igor.reservation_system.core.gateways.UserGateway;
+import com.igor.reservation_system.core.gateways.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -85,6 +90,28 @@ public class BeansConfig {
                                                  UserGateway userGateway, PaymentGateway paymentGateway) {
 
         return new MakePaymentUseCaseImpl(flightReservationGateway, flightGateway, userGateway, paymentGateway);
+    }
+
+    /* Hotel Beans */
+
+    @Bean
+    public SaveHotelUseCase saveHotelUseCase(HotelGateway hotelGateway) {
+        return new SaveHotelUseCaseImpl(hotelGateway);
+    }
+
+    @Bean
+    public GetAllHotelsUseCase getAllHotelsUseCase(HotelGateway hotelGateway) {
+        return new GetAllHotelsUseCaseImpl(hotelGateway);
+    }
+
+    @Bean
+    public GetHotelByIdUseCase getHotelByIdUseCase(HotelGateway hotelGateway) {
+        return new GetHotelByIdUseCaseImpl(hotelGateway);
+    }
+
+    @Bean
+    public GetHotelsByLocationUseCase getHotelsByLocationUseCase(HotelGateway hotelGateway) {
+        return new GetHotelsByLocationUseCaseImpl(hotelGateway);
     }
 
 }
