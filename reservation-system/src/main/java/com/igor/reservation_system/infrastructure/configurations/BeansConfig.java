@@ -18,6 +18,8 @@ import com.igor.reservation_system.applications.usecases.hotel.impl.GetAllHotels
 import com.igor.reservation_system.applications.usecases.hotel.impl.GetHotelByIdUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.hotel.impl.GetHotelsByLocationUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.hotel.impl.SaveHotelUseCaseImpl;
+import com.igor.reservation_system.applications.usecases.hotelReservation.MakeHotelReservationUseCase;
+import com.igor.reservation_system.applications.usecases.hotelReservation.impl.MakeHotelReservationUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.payment.MakePaymentUseCase;
 import com.igor.reservation_system.applications.usecases.payment.impl.MakePaymentUseCaseImpl;
 import com.igor.reservation_system.applications.usecases.user.GetAllUsersUseCase;
@@ -87,9 +89,10 @@ public class BeansConfig {
     @Bean
     public MakePaymentUseCase makePaymentUseCase(FlightReservationGateway flightReservationGateway,
                                                  FlightGateway flightGateway,
-                                                 UserGateway userGateway, PaymentGateway paymentGateway) {
+                                                 UserGateway userGateway, PaymentGateway paymentGateway, HotelReservationGateway hotelReservationGateway,
+                                                 HotelGateway hotelGateway) {
 
-        return new MakePaymentUseCaseImpl(flightReservationGateway, flightGateway, userGateway, paymentGateway);
+        return new MakePaymentUseCaseImpl(flightReservationGateway, flightGateway, userGateway, paymentGateway, hotelReservationGateway, hotelGateway);
     }
 
     /* Hotel Beans */
@@ -112,6 +115,15 @@ public class BeansConfig {
     @Bean
     public GetHotelsByLocationUseCase getHotelsByLocationUseCase(HotelGateway hotelGateway) {
         return new GetHotelsByLocationUseCaseImpl(hotelGateway);
+    }
+
+    /* Hotel Reservation Beans */
+
+    @Bean
+    public MakeHotelReservationUseCase makeHotelReservationUseCase(HotelReservationGateway hotelReservationGateway, UserGateway userGateway,
+                                                                   HotelGateway hotelGateway) {
+
+        return new MakeHotelReservationUseCaseImpl(hotelReservationGateway, userGateway, hotelGateway);
     }
 
 }

@@ -47,7 +47,7 @@ public class PaymentMapper {
                 null,
                 null,
                 request.reservationId(),
-                null
+                request.reservationType()
         );
     }
 
