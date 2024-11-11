@@ -58,7 +58,12 @@ public class HotelGatewayImpl implements HotelGateway {
     }
 
     @Override
-    public void updateTotalRooms(Long hotelId, int roomsReserved) {
+    public void updateAvailableRooms(Long hotelId, int roomsReserved) {
+
+        var hotelFound = hotelRepository.findById(hotelId)
+                .orElseThrow(() -> new RuntimeException("Hotel not found"));
+        hotelFound.setTotalRooms(hotelFound.getTotalRooms() - roomsReserved);
+        hotelRepository.save(hotelFound);
 
     }
 }
