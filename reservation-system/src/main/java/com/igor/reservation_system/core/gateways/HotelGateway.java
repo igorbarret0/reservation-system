@@ -16,6 +16,6 @@ public interface HotelGateway {
 
     boolean existsHotelByName(String name);
 
-    void updateTotalRooms(Long hotelId, int roomsReserved);
+    void updateAvailableRooms(Long hotelId, int roomsReserved);
 
 }
